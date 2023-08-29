@@ -3,6 +3,7 @@ import Logo from "./Logo"
 import ThemeToggle from "./ThemeToggle"
 import styled from "@emotion/styled"
 import { zIndexes } from "src/styles/zIndexes"
+import LocaleSwitcher from "./LocaleSwitcher"
 
 type Props = {
   fullWidth: boolean
@@ -16,6 +17,7 @@ const Header: React.FC<Props> = ({ fullWidth }) => {
         <div className="nav">
           <ThemeToggle />
           <NavBar />
+          <LocaleSwitcher />
         </div>
       </div>
     </StyledWrapper>

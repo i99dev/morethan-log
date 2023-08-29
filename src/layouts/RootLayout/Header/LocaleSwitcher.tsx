@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "next/link"
-import {language} from "@/src/locales"
+import {language} from "src/locales"
 import { useRouter } from "next/router"
 import { useIntl } from "react-intl"
 type Props = {}

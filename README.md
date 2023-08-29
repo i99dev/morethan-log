@@ -23,6 +23,20 @@ Next.js static blog using Notion as a Content Management System (CMS). Supports 
 - Dynamically generates OG IMAGEs (thumbnails!) for posts. ([og-image-korean](https://github.com/morethanmin/og-image-korean)).
 - Dynamically creates sitemap for posts.
 
+## Add a new language
+
+- Add a new language in `./src/locales` folder with the same structure as `en.json`.
+- Add a new language in `Next.config.js` with the same structure as `en`.
+- Dubplicate Notion template and share to web.
+- Add the new Notion page Id in `./src/locals/index.ts` with the same structure as `en` and chnage last part of the key to the new language code.
+
+**Note:** if you dont set on `./src/locales/index.ts`->`NOTION_PAGE_ID_{LANG}` environment variable, it will use `NOTION_PAGE_ID` environment variable from `set.config.js`.
+
+### Disable Multi language
+- uncomment insaid array on file `./src/locales/index.ts` and set you default language on `next.config.js` file.
+- set `NOTION_PAGE_ID` environment variable from `set.config.js`.
+
+
 **🤖 Customisable and Supports various plugin through CONFIG**
 
 - Your profile information can be updated through Config. (`site.config.js`)

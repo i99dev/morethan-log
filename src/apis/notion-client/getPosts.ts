@@ -5,14 +5,21 @@ import { idToUuid } from "notion-utils"
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
 import { TPosts } from "src/types"
+import {language} from "src/locales"
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
  */
 
 // TODO: react query를 사용해서 처음 불러온 뒤로는 해당데이터만 사용하도록 수정
-export const getPosts = async () => {
-  let id = CONFIG.notionConfig.pageId as string
+export async function getPosts(local:string) {
+  let id;
+  if (language.length === 0) {
+    id = CONFIG.notionConfig.pageId as string
+  }
+  else {
+    id = language.find((item:any) => item.code === local)?.NOTION_PAGE_ID as string
+  }
   const api = new NotionAPI()
 
   const response = await api.getPage(id)

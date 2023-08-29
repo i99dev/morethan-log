@@ -17,8 +17,8 @@ const filter: FilterPostsOptions = {
   acceptType: ["Paper", "Post", "Page"],
 }
 
-export const getStaticPaths = async () => {
-  const posts = await getPosts()
+export async function getStaticPaths({ locales }: { locales: string[]}) {
+  const posts = await getPosts(locales[0])
   const filteredPost = filterPosts(posts, filter)
 
   return {
@@ -29,8 +29,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug
-
-  const posts = await getPosts()
+const locale = context.locale || "en-US"
+const posts = await getPosts(locale)
   const feedPosts = filterPosts(posts)
   await queryClient.prefetchQuery(queryKey.posts(), () => feedPosts)
 
